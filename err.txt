@@ -1,0 +1,23 @@
+shell/main.c:12:14: error: incompatible pointer to integer conversion passing 'char *' to parameter of type 'char'; dereference with * [-Wint-conversion]
+   12 |                 print_user(cwd, name, host);
+      |                            ^~~
+      |                            *
+prompts/userprompt.h:4:22: note: passing argument to parameter 'cwd' here
+    4 | void print_user(char cwd, char name, char host);
+      |                      ^
+shell/main.c:12:19: error: incompatible pointer to integer conversion passing 'char *' to parameter of type 'char'; dereference with * [-Wint-conversion]
+   12 |                 print_user(cwd, name, host);
+      |                                 ^~~~
+      |                                 *
+prompts/userprompt.h:4:32: note: passing argument to parameter 'name' here
+    4 | void print_user(char cwd, char name, char host);
+      |                                ^
+shell/main.c:12:25: error: incompatible pointer to integer conversion passing 'char *' to parameter of type 'char'; dereference with * [-Wint-conversion]
+   12 |                 print_user(cwd, name, host);
+      |                                       ^~~~
+      |                                       *
+prompts/userprompt.h:4:43: note: passing argument to parameter 'host' here
+    4 | void print_user(char cwd, char name, char host);
+      |                                           ^
+3 errors generated.
+make: *** [Makefile:7: run] Error 1
