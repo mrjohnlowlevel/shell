@@ -4,13 +4,15 @@
 
 char *get_name(void)
 {
-        char *user = getpwuid(getuid())->pw_name;
-        if (user != NULL) {
-                return user;
+        struct passwd *buf = getpwuid(getuid());
+        
+        if (buf == NULL) {
+                return NULL;
         }
         else {
-                return "Unknown";
+                return buf->pw_name;
         }
+        
 }
 
 char *get_cwd(char *cwd, size_t size)
@@ -21,7 +23,7 @@ char *get_cwd(char *cwd, size_t size)
                 return buf;
         }
         else {
-                return "NULL";
+                return NULL;
         }
 }
 

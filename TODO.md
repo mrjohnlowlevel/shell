@@ -1,4 +1,4 @@
 # TODOS (increment as much as possible)
 
-- Display prompt <x>
+- Display prompt <y> |DONE|
 - Eexcute commands <x>
