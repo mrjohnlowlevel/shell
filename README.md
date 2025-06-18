@@ -1,1 +1,3 @@
-# SIMPLE SHELL in C
+# SIMPLE SHELL
+
+- Shell written in C
