@@ -25,14 +25,12 @@ char *get_cwd(char *cwd, size_t size)
         }
 }
 
-int get_host(char *host, size_t size)
+char *get_host(char *host, size_t size)
 {
-        int buf = gethostname(host, size);
-
-        if (buf != NULL) {
-                return buf;
+        if (gethostname(host, size) < 0) {
+                return NULL;
         }
         else {
-                return "NULL";
+                return host;
         }
 }
