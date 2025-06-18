@@ -2,6 +2,7 @@
 #include <unistd.h>
 #include "getuser.h"
 #include "userprompt.h"
+#include "input.h"
 
 int main()
 {
@@ -13,6 +14,9 @@ int main()
 		get_cwd(cwd, sizeof(cwd));
 
 		print_user(cwd, name, host);
+
+		char inputbuf[1024];
+		getinp(inputbuf);
 	}
 	else {
 	}
