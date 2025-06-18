@@ -8,18 +8,21 @@
 int main()
 {
 	if (isatty(STDIN_FILENO)) {
-		char *name = get_name();
+		while (1)
+		{
+			char *name = get_name();
 
-		char host[1024], cwd[1024];
-		get_host(host, sizeof(host));
-		get_cwd(cwd, sizeof(cwd));
+			char host[1024], cwd[1024];
+			get_host(host, sizeof(host));
+			get_cwd(cwd, sizeof(cwd));
 
-		print_user(cwd, name, host);
+			print_user(cwd, name, host);
 
-		char inputbuf[1024];
-		size_t inpbufsize = sizeof(inputbuf);
-		getinp(inputbuf, inpbufsize);
-		printf("%s\n", inputbuf);
+			char inputbuf[1024];			// allocate dynamically later
+			size_t inpbufsize = sizeof(inputbuf);
+			getinp(inputbuf, inpbufsize);
+			printf("%s\n", inputbuf);
+		}
 	}
 	else {
 	}
