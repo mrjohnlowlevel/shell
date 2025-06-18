@@ -3,6 +3,7 @@
 #include "getuser.h"
 #include "userprompt.h"
 #include "input.h"
+#include <stdlib.h>
 
 int main()
 {
@@ -16,7 +17,9 @@ int main()
 		print_user(cwd, name, host);
 
 		char inputbuf[1024];
-		getinp(inputbuf);
+		size_t inpbufsize = sizeof(inputbuf);
+		getinp(inputbuf, inpbufsize);
+		printf("%s\n", inputbuf);
 	}
 	else {
 	}
