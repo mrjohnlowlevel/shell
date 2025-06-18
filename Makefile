@@ -1,14 +1,22 @@
-MAIN = shell/main.c
-BIN = bin/main
-OBJ = objects/main.o
+# === VARIABLES ===
+SRC := shell/main.c getuser/getuser.c prompts/userprompt.c
+OBJ := $(patsubst %.c,objects/%.o,$(SRC))
+BIN := bin/main
 
-run:
-	mkdir -p bin
-	clang -c $(MAIN) -o $(OBJ) -Igetuser -Iprompts
-	clang -c getuser/getuser.c -o objects/getuser.o
-	clang -c prompts/userprompt.c -o objects/userprompt.o
-	clang $(OBJ) objects/getuser.o objects/userprompt.o -o $(BIN)
+# === DEFAULT TARGET ===
+all: $(BIN)
 
+# === LINKING STEP ===
+$(BIN): $(OBJ)
+	mkdir -p $(dir $@)
+	clang $^ -o $@
 
+# === COMPILATION STEP (pattern rule) ===
+objects/%.o: %.c
+	mkdir -p $(dir $@)
+	clang -c $< -o $@ -Igetuser -Iprompts
+
+# === CLEANUP ===
+.PHONY: clean
 clean:
-	rm -rf ./bin/* ./objects/*
+	rm -rf bin/* objects/*
