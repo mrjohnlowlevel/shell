@@ -4,6 +4,7 @@
 #include "userprompt.h"
 #include "input.h"
 #include <stdlib.h>
+#include "parser.h"
 
 int main()
 {
@@ -21,7 +22,10 @@ int main()
 			char inputbuf[1024];			// allocate dynamically later
 			size_t inpbufsize = sizeof(inputbuf);
 			getinp(inputbuf, inpbufsize);
-			printf("%s\n", inputbuf);
+
+			char **args = to_tokens(inputbuf);
+
+			printf("%s\n", args[1]);
 		}
 	}
 	else {
