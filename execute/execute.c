@@ -6,6 +6,7 @@
 void exec_args(char **tokens)
 {
         const pid_t pid = fork();
+
         if (pid == 0) {
                 execvp(tokens[0], tokens);
                 perror("executing file error");

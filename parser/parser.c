@@ -10,9 +10,10 @@ char **to_tokens(char *buf)
 
         char **tokens = malloc(32 * sizeof(char*));  // Allow up to 32 tokens
 
-
         if (!tokens)
                 return NULL;
+
+        token[strcspn(buf, "\n")] = 0;
 
         while (token != NULL && i < 32) {
                 tokens[i++] = token;
