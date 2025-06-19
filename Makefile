@@ -20,3 +20,8 @@ objects/%.o: %.c
 .PHONY: clean
 clean:
 	rm -rf bin/* objects/*
+
+# === RUN ===
+.PHONY: run
+run:
+	./$(BIN)
