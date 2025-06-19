@@ -3,13 +3,15 @@
 #include "getuser.h"
 #include "userprompt.h"
 #include "input.h"
-#include <stdlib.h>
 #include "parser.h"
+#include "execute.h"
 
 int main()
 {
 	if (isatty(STDIN_FILENO)) {
-		while (1)
+		int i = 0;
+		/*Debugging counter*/
+		while (i < 2)
 		{
 			char *name = get_name();
 
@@ -24,8 +26,9 @@ int main()
 			getinp(inputbuf, inpbufsize);
 
 			char **args = to_tokens(inputbuf);
-
-			printf("%s\n", args[1]);
+			exec_args(args);
+			i++;
+			free_tokens(args);
 		}
 	}
 	else {

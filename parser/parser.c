@@ -23,3 +23,10 @@ char **to_tokens(char *buf)
 
         return tokens;
 }
+
+void free_tokens(char **tokens)
+{
+        if (!tokens)
+                return;
+        free(tokens);
+}
