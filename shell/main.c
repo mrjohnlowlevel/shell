@@ -26,7 +26,7 @@ int main()
 			getinp(inputbuf, inpbufsize);
 
 			char **args = to_tokens(inputbuf);
-			exec_args(args);
+			exec_args(args, inpbufsize);
 			i++;
 			free_tokens(args);
 		}
