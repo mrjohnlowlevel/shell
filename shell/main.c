@@ -25,7 +25,7 @@ int main()
 			size_t inpbufsize = sizeof(inputbuf);
 			getinp(inputbuf, inpbufsize);
 
-			char **args = to_tokens(inputbuf);
+			char **args = to_tokens(inputbuf, " ");
 			exec_args(args, inpbufsize);
 			i++;
 			free_tokens(args);
