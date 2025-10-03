@@ -1,1 +1,1 @@
-- add basic parsing (for now at least)
+- make the shell create a new process for the child program

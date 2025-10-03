@@ -1,5 +1,6 @@
 use std::io::{stdin, stdout, Write};
 use shell::prompt::print_prompt;
+use shell::parser::line_breaker;
 use whoami::{fallible::hostname, username};
 
 fn main() {
@@ -22,12 +23,14 @@ fn main() {
         let trimmed_input: &str = user_input.trim();
         println!("{trimmed_input:?}");
 
-        if trimmed_input != "exit".to_string() {
-            println!("INPUT = {trimmed_input}");
+        let tokens = line_breaker(trimmed_input);
+
+        if tokens.iter().next() == Some(&"exit") {
             user_input.clear();
-        }
-        else {
             break;
+        } else {
+            println!("{tokens:?}");
+            user_input.clear();
         }
     }
 }
