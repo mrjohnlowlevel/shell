@@ -1,9 +1,10 @@
-use std::io::{stdin, stdout, Write};
-use shell::prompt::print_prompt;
 use shell::parser::line_breaker;
+use shell::prompt::print_prompt;
+use shell::spawner::spawn_process;
+use std::io::{Write, stdin, stdout};
 use whoami::{fallible::hostname, username};
 
-fn main() {
+fn main() -> Result<(), String> {
     let mut user_input: String = String::new();
     let shell_user: String = username();
 
@@ -21,7 +22,6 @@ fn main() {
             .expect("Error while reading input");
 
         let trimmed_input: &str = user_input.trim();
-        println!("{trimmed_input:?}");
 
         let tokens = line_breaker(trimmed_input);
 
@@ -29,8 +29,13 @@ fn main() {
             user_input.clear();
             break;
         } else {
-            println!("{tokens:?}");
+            println!("{tokens:?}\n");
+            let proccess: Vec<u8> = spawn_process(tokens[0], tokens.iter().map(|s| *s).collect())?;
+
+            println!("{:?}\n", proccess);
             user_input.clear();
         }
     }
+
+    Ok(())
 }
