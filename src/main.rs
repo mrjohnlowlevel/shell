@@ -1,10 +1,10 @@
 use shell::parser::line_breaker;
 use shell::prompt::print_prompt;
 use shell::spawner::spawn_process;
-use std::io::{Write, stdin, stdout};
+use std::io::{self, stdin, stdout, Write};
 use whoami::{fallible::hostname, username};
 
-fn main() -> Result<(), String> {
+fn main() -> io::Result<()> {
     let mut user_input: String = String::new();
     let shell_user: String = username();
 
@@ -30,9 +30,11 @@ fn main() -> Result<(), String> {
             break;
         } else {
             println!("{tokens:?}\n");
-            let proccess: Vec<u8> = spawn_process(tokens[0], tokens.iter().map(|s| *s).collect())?;
-
-            println!("{:?}\n", proccess);
+            let mut args: Vec<&str> = tokens.iter().map(|s| *s).collect();
+            args.remove(0);
+            let proccess: Vec<u8> = spawn_process(tokens[0], args).unwrap();
+            
+            io::stdout().write_all(&proccess)?;
             user_input.clear();
         }
     }
